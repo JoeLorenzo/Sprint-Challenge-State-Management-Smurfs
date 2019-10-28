@@ -1,21 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import Cards from './Cards'
-import { useApiCall } from '../hooks/useApiCall'
-import { ApiDataContext } from '..context/ApiDataContext'
+import Cards from "./Cards";
+import { useApiCall } from "../hooks/useApiCall";
+import { ApiDataContext } from "../context/ApiDataContext";
 
 const App = () => {
-  const [smurfData] = useApiCall()
+   const [smurfData] = useApiCall();
 
-console.log(smurfData)
-
-    return (
-      	<ApiDataContext.Provider value={{ smurfData }}>
+  return (
+    <ApiDataContext.Provider value={{ smurfData }}>
       <div className="App">
         <Cards />
       </div>
-      </ApiDataContext.Provider>
-    );
-  }
-
+    </ApiDataContext.Provider>
+  );
+};
 
 export default App;
