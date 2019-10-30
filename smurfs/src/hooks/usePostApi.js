@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
-export const useApiCall = () => {
+export const usePostApi = () => {
   const [value, setValue] = useState([])
 
   useEffect(() => {
@@ -13,5 +13,5 @@ export const useApiCall = () => {
       .catch(err => console.log(err))
   }, [])
 
-  return [value]
+  return [value, setValue]
 }
