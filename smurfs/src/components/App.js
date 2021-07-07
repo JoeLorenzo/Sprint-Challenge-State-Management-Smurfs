@@ -1,16 +1,29 @@
-import React, { Component } from "react";
-import "./App.css";
-class App extends Component {
-  render() {
-    return (
+import React, { useState, useEffect, useContext } from "react";
+import Cards from "./Cards";
+import { useApiCall } from "../hooks/useApiCall";
+import { useForm } from "../hooks/useForm";
+import { ApiDataContext } from "../context/ApiDataContext";
+import { FormValuesContext } from "../context/FormValuesContext";
+import Form from "./Form"
+
+const App = () => {
+   const [smurfData] = useApiCall();
+   const [submittedValues, setSubmittedValues] = useState({
+     id: "",
+     name: "",
+     age: "",
+     height: ""
+   })
+  return (
+    <ApiDataContext.Provider value={{ smurfData }}>
+        <FormValuesContext.Provider value={ {submittedValues, setSubmittedValues} }>
       <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your state management version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
-        <div>Have fun!</div>
+        <Cards />
+        <Form />
       </div>
-    );
-  }
-}
+        </FormValuesContext.Provider>
+    </ApiDataContext.Provider>
+  );
+};
 
 export default App;
